@@ -11,7 +11,8 @@ class VistaChat extends StatefulWidget {
 class _VistaChatState extends State<VistaChat> {
   final GlobalKey<AnimatedListState> _listKey = GlobalKey();
   List<String> _data = [];
-  static const String BOT_URL = "";
+  static const String BOT_URL =
+      "http://depressionbotauxiliar.herokuapp.com/bot";
 
   TextEditingController _queryController = TextEditingController();
 
