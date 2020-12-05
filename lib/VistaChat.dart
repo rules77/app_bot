@@ -1,6 +1,9 @@
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:bubble/bubble.dart';
+import 'package:flutter_tts/flutter_tts.dart';
+import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'package:http/http.dart' as http;
 
 class VistaChat extends StatefulWidget {
@@ -9,6 +12,20 @@ class VistaChat extends StatefulWidget {
 }
 
 class _VistaChatState extends State<VistaChat> {
+  
+  stt.SpeechToText _speech;
+  bool _isListening = false;
+  String _text = 'Press the button and start speaking';
+  double _confidence = 1.0;
+
+  @override
+  void initState(){
+    super.initState();
+    _speech = stt.SpeechToText();
+  }
+  
+  final FlutterTts flutterTts = FlutterTts();
+  
   final GlobalKey<AnimatedListState> _listKey = GlobalKey();
   List<String> _data = [];
   static const String BOT_URL =
@@ -16,12 +33,19 @@ class _VistaChatState extends State<VistaChat> {
 
   TextEditingController _queryController = TextEditingController();
 
+  speak(String text) async{
+    print(await flutterTts.getLanguages);
+    await flutterTts.setLanguage("es-US");
+    await flutterTts.setPitch(1);
+    await flutterTts.speak(text); 
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Flutter & Python"),
+        title: Text("Chatbot"),
       ),
       body: Stack(
         children: <Widget>[
@@ -40,7 +64,7 @@ class _VistaChatState extends State<VistaChat> {
                   Icons.message,
                   color: Colors.greenAccent,
                 ),
-                hintText: "Hello",
+                hintText: "Escribe tu mensaje aquí",
               ),
               controller: _queryController,
               textInputAction: TextInputAction.send,
@@ -51,7 +75,47 @@ class _VistaChatState extends State<VistaChat> {
           ),
         ],
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      floatingActionButton: AvatarGlow(
+        animate: _isListening,
+        glowColor: Theme.of(context).primaryColor,
+        endRadius: 75.0,
+        child: FloatingActionButton(
+          onPressed: _listen,
+          child: Icon(_isListening ? Icons.mic : Icons.mic_none),
+        ),
+      ),
     );
+  }
+
+  void _listen() async{
+    if(!_isListening){
+      bool available = await _speech.initialize(
+        onStatus: (val) => print('onStatus: $val'),
+        onError: (val) => print('onError: $val'),
+      );
+      if(available){
+        setState(() {
+          _isListening = true;
+        });
+        _speech.listen(
+          onResult: (val) => setState((){
+            _text = val.recognizedWords;
+            //print(_text);
+            _queryController.text = val.recognizedWords;
+            if(val.hasConfidenceRating && val.confidence > 0){
+              _confidence = val.confidence;
+            }
+          }),
+        );
+      }
+    }
+    else{
+      setState(() {
+        _isListening = false;
+      });
+      _speech.stop();
+    }
   }
 
   http.Client _getClient() {
@@ -92,10 +156,13 @@ class _VistaChatState extends State<VistaChat> {
         padding: EdgeInsets.only(top: 10),
         child: Container(
           alignment: mine ? Alignment.topLeft : Alignment.topRight,
-          child: Bubble(
-            child: Text(item.replaceAll("<bot>", "")),
-            color: mine ? Colors.blue : Colors.indigo,
-            padding: BubbleEdges.all(10),
+          child: InkWell(
+              child: Bubble(
+                child: Text(item.replaceAll("<bot>", "")),
+                color: mine ? Colors.blue : Colors.indigo,
+                padding: BubbleEdges.all(10),
+            ),
+            onTap: () => speak(item.replaceAll("<bot>", "")),
           ),
         ),
       ),

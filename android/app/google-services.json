@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "155197172816",
+    "firebase_url": "https://thesis-project-e2bc0.firebaseio.com",
+    "project_id": "thesis-project-e2bc0",
+    "storage_bucket": "thesis-project-e2bc0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:155197172816:android:6ba16333d9bd103a4c7555",
+        "android_client_info": {
+          "package_name": "com.example.thesis_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "155197172816-fs118bh4hd3185eahf6agni9bibjmq1h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAngg_vvoS2rHmdXlXCpEKi3dU040pG1pM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "155197172816-fs118bh4hd3185eahf6agni9bibjmq1h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

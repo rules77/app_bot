@@ -1,22 +1,30 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:thesis_project/griddashboard.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-//class Home extends StatefulWidget {
-//  @override
-//  HomeState createState() => new HomeState();
-//}
+class MenuDashboardScreen extends StatefulWidget {
+  final UserCredential user;
+  const MenuDashboardScreen({Key key, @required this.user}):super(key: key);
 
-class MenuDashboardScreen extends StatelessWidget {
+  @override
+  MenuDashboardScreenState createState() =>  MenuDashboardScreenState();
+}
+
+class MenuDashboardScreenState extends State<MenuDashboardScreen> {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Bienvenido ${widget.user.user.email}'),
+      ),
       backgroundColor: Color(0xff392850),
       body: Column(
         children: <Widget>[
           SizedBox(
-            height: 110,
+            height: 20,
           ),
           Padding(
             padding: EdgeInsets.only(left: 16, right: 16),
@@ -27,7 +35,7 @@ class MenuDashboardScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      "Jonhy s Family",
+                      "Menú Principal",
                       style: GoogleFonts.openSans(
                           textStyle: TextStyle(
                               color: Colors.white,
@@ -38,7 +46,7 @@ class MenuDashboardScreen extends StatelessWidget {
                       height: 4,
                     ),
                     Text(
-                      "Home",
+                      "Chatbot",
                       style: GoogleFonts.openSans(
                           textStyle: TextStyle(
                               color: Color(0xffa29aac),

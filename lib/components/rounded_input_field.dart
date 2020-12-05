@@ -15,8 +15,15 @@ class RoundedInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //String _email;
     return TextFieldContainer(
       child: TextField(
+        //validator: (input){
+        //  if(input.isEmpty){
+        //    return 'Please type an email';
+        //  }
+        //},
+        //onSaved: (input)=> _email = input,
         onChanged: onChanged,
         decoration: InputDecoration(
           icon: Icon(

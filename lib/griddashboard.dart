@@ -5,39 +5,39 @@ import 'VistaChat.dart';
 class GridDashboard extends StatelessWidget {
   Items item1 = new Items(
       title: "Reportes",
-      subtitle: "March, Wednesday",
-      event: "3 Events",
-      img: "assets/settings.png");
+      //subtitle: "March, Wednesday",
+      //event: "3 Events",
+      img: "assets/images/PDF.png");
 
   Items item2 = new Items(
       title: "Opciones de Administrador",
-      subtitle: "March, Wednesday",
-      event: "3 Events",
+      //subtitle: "March, Wednesday",
+      //event: "3 Events",
       img: "assets/settings.png");
 
   Items item3 = new Items(
       title: "Configuración del chat",
-      subtitle: "March, Wednesday",
-      event: "3 Events",
-      img: "assets/settings.png");
+      //subtitle: "March, Wednesday",
+      //event: "3 Events",
+      img: "assets/images/chat.png");
 
   Items item4 = new Items(
       title: "Historial de conversaciones",
-      subtitle: "March, Wednesday",
-      event: "3 Events",
-      img: "assets/settings.png");
+      //subtitle: "March, Wednesday",
+      //event: "3 Events",
+      img: "assets/images/chat.png");
 
   Items item5 = new Items(
       title: "Permisos y visualización",
-      subtitle: "March, Wednesday",
-      event: "3 Events",
-      img: "assets/settings.png");
+      //subtitle: "March, Wednesday",
+      //event: "3 Events",
+      img: "assets/images/permiso.png");
 
   Items item6 = new Items(
       title: "Acerca de...",
-      subtitle: "March, Wednesday",
-      event: "3 Events",
-      img: "assets/settings.png");
+      //subtitle: "March, Wednesday",
+      //event: "3 Events",
+      img: "assets/images/info.png");
 
   @override
   Widget build(BuildContext context) {
@@ -91,28 +91,28 @@ class GridDashboard extends StatelessWidget {
                           fontSize: 16,
                           fontWeight: FontWeight.w600)),
                 ),
-                SizedBox(
-                  height: 8,
-                ),
-                Text(
-                  data.subtitle,
-                  style: GoogleFonts.openSans(
-                      textStyle: TextStyle(
-                          color: Colors.white38,
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600)),
-                ),
-                SizedBox(
-                  height: 14,
-                ),
-                Text(
-                  data.event,
-                  style: GoogleFonts.openSans(
-                      textStyle: TextStyle(
-                          color: Colors.white70,
-                          fontSize: 11,
-                          fontWeight: FontWeight.w600)),
-                ),
+                //SizedBox(
+                //  height: 8,
+                //),
+                //Text(
+                //  data.subtitle,
+                //  style: GoogleFonts.openSans(
+                //      textStyle: TextStyle(
+                //          color: Colors.white38,
+                //          fontSize: 10,
+                //          fontWeight: FontWeight.w600)),
+                //),
+                //SizedBox(
+                //  height: 14,
+                //),
+                //Text(
+                //  data.event,
+                //  style: GoogleFonts.openSans(
+                //      textStyle: TextStyle(
+                //          color: Colors.white70,
+                //          fontSize: 11,
+                //          fontWeight: FontWeight.w600)),
+                //),
               ],
             ),
           );
@@ -124,8 +124,9 @@ class GridDashboard extends StatelessWidget {
 
 class Items {
   String title;
-  String subtitle;
-  String event;
+  //String subtitle;
+  //String event;
   String img;
-  Items({this.title, this.subtitle, this.event, this.img});
+  //Items({this.title, this.subtitle, this.event, this.img});
+  Items({this.title, this.img});
 }
